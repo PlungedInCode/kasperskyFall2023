@@ -1,6 +1,7 @@
 #include <iostream>
 #include <filesystem>
-#include "Table.hpp"
+#include "src/Table.hpp"
+
 
 int main(int argc, char* argv[]) {
     if (argc != 2) {
@@ -9,9 +10,7 @@ int main(int argc, char* argv[]) {
     }
 
     std::string filename = argv[1];
-    // std::string filename = "data.csv";
-
-    // check wheter it's in csv format or not
+    
     if (!std::filesystem::exists(filename)) {
         std::cerr << "File " << filename << " doesn't exisits\n";
         return -2;
@@ -20,5 +19,7 @@ int main(int argc, char* argv[]) {
     Table table(filename);
     table.EvaluateTable();
     table.Print();
+    table.Export();
     return 0;
+    
 }
